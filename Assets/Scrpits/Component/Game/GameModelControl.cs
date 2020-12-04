@@ -13,6 +13,7 @@ public class GameModelControl : BaseMonoBehaviour
 
     protected float minScaleSize = 0.3f;
     protected float maxScaleSize = 3f;
+
     void Update()
     {
         //没有触摸
@@ -48,8 +49,8 @@ public class GameModelControl : BaseMonoBehaviour
 
         //两个距离之差，为正表示放大手势， 为负表示缩小手势  
         float offset = newDistance - oldDistance;
-
-
+        
+        //进行缩放
         float scaleFactor = offset * speedForScale * Time.deltaTime;
         Vector3 localScale = transform.localScale;
         Vector3 scale = new Vector3(localScale.x + scaleFactor,
