@@ -42,6 +42,7 @@ public class UserDataBean
         else
         {
             UserModelDataBean modelData = new UserModelDataBean(modelId);
+            listUnlockModel.Add(modelData);
             return true;
         }
     }
