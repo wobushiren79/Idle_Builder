@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class ModelInfoBean : BaseBean
 {
     public string model_name;
+    public long unlock_money;
     public string name;
     public string content;
 

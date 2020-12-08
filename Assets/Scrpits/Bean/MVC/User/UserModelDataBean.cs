@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 
 [Serializable]
-public class UserModelDataBean 
+public class UserModelDataBean
 {
     public long modelId;
     public List<UserModelPartDataBean> listUnlockPart;
@@ -18,20 +18,20 @@ public class UserModelDataBean
     /// 增加已解锁模型
     /// </summary>
     /// <param name="modelId"></param>
-    public bool AddUnLockPart(long partId)
+    public UserModelPartDataBean AddUnLockPart(long partId, long addPrice)
     {
         if (listUnlockPart == null)
             listUnlockPart = new List<UserModelPartDataBean>();
-        bool hasData = CheckHasPart(modelId, out UserModelPartDataBean partDataBean);
+        bool hasData = CheckHasPart(partId, addPrice, out UserModelPartDataBean partDataBean);
         if (hasData)
         {
-            return false;
+            return partDataBean;
         }
         else
         {
-            UserModelPartDataBean modelData = new UserModelPartDataBean(partId);
+            UserModelPartDataBean modelData = new UserModelPartDataBean(partId, addPrice);
             listUnlockPart.Add(modelData);
-            return true;
+            return modelData;
         }
     }
 
@@ -40,7 +40,7 @@ public class UserModelDataBean
     /// </summary>
     /// <param name="modelId"></param>
     /// <returns></returns>
-    public bool CheckHasPart(long partId, out UserModelPartDataBean partDataBean)
+    public bool CheckHasPart(long partId, long addPrice, out UserModelPartDataBean partDataBean)
     {
         partDataBean = null;
         for (int i = 0; i < listUnlockPart.Count; i++)
@@ -49,6 +49,7 @@ public class UserModelDataBean
             if (partId == itemPartData.partId)
             {
                 partDataBean = itemPartData;
+                partDataBean.addPrice = addPrice;
                 return true;
             }
         }

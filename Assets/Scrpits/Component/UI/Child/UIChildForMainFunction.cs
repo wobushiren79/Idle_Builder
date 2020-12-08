@@ -23,7 +23,8 @@ public class UIChildForMainFunction : BaseUIChildComponent<UIGameMain>
     /// </summary>
     public void OnClickForAddMoney()
     {
-
+        //增加用户金钱
+        uiComponent.handler_GameData.AddUserMoney(1);
     }
 
     /// <summary>
@@ -31,7 +32,8 @@ public class UIChildForMainFunction : BaseUIChildComponent<UIGameMain>
     /// </summary>
     public void OnClickForWarehouse()
     {
-
+        uiComponent.ShowWarehouseList(true);
+        uiComponent.ShowBlueprintList(false);
     }
 
     /// <summary>
@@ -39,7 +41,8 @@ public class UIChildForMainFunction : BaseUIChildComponent<UIGameMain>
     /// </summary>
     public void OnClickForBlueprint()
     {
-
+        uiComponent.ShowWarehouseList(false);
+        uiComponent.ShowBlueprintList(true);
     }
 
 }

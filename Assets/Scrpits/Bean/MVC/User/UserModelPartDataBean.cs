@@ -5,11 +5,11 @@ using System;
 public class UserModelPartDataBean 
 {
     public long partId;
-
-
-    public UserModelPartDataBean(long partId)
+    public long addPrice;
+    public UserModelPartDataBean(long partId,long addPrice)
     {
         this.partId = partId;
+        this.addPrice = addPrice;
     }
 
 }

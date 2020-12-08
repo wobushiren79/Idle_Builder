@@ -33,6 +33,15 @@ public class ModelInfoModel : BaseMVCModel
     }
 
     /// <summary>
+    /// 获取所有模型数据
+    /// </summary>
+    /// <returns></returns>
+    public List<ModelInfoBean> GetAllModel()
+    {
+        return modelInfoService.QueryAllData();
+    }
+
+    /// <summary>
     /// 通过模型ID获取模型部分数据
     /// </summary>
     /// <param name="modelId"></param>

@@ -31,4 +31,14 @@ public class ModelInfoController : BaseMVCController<ModelInfoModel, IModelInfoV
         GetView().GetModelInfoSuccess(modelInfo, action);
     }
 
+    /// <summary>
+    /// 获取所有模型
+    /// </summary>
+    /// <param name="action"></param>
+    public void GetAllModel(Action<List<ModelInfoBean>> action)
+    {
+        List<ModelInfoBean> listData = GetModel().GetAllModel();
+        GetView().GetAllModelInfoSuccess(listData, action);
+    }
+
 }

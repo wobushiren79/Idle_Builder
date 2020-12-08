@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -21,6 +22,11 @@ public class GameModelManager : BaseManager, IModelInfoView
         modelInfoController.GetModelInfoById(id, action);
     }
 
+    public void GetAllModel(Action<List<ModelInfoBean>> action)
+    {
+        modelInfoController.GetAllModel(action);
+    }
+
     #region 数据回掉
     public void GetModelInfoFail(string failMsg)
     {
@@ -30,6 +36,15 @@ public class GameModelManager : BaseManager, IModelInfoView
     public void GetModelInfoSuccess(ModelInfoBean modelInfo, Action<ModelInfoBean> action)
     {
         action?.Invoke(modelInfo);
+    }
+
+    public void GetAllModelInfoSuccess(List<ModelInfoBean> listModelInfo, Action<List<ModelInfoBean>> action)
+    {
+        action?.Invoke(listModelInfo);
+    }
+
+    public void GetAllModelInfoFail(string failMsg)
+    {
     }
     #endregion
 }
