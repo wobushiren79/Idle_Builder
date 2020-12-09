@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,8 +34,12 @@ public class UIItemForBuleprintList : BaseUIItem<UIGameMain>
             UserModelDataBean userModelData = userData.AddUnLockModel(modelInfo.id);
             //设置为当前显示
             userData.SetFirstUnlockModel(userModelData);
+            Action action = () =>
+            {
+                //uiComponent.handler_GameModel.SetPartProgress("Cube", 0f);
+            };
             //加载模型
-            uiComponent.handler_GameModel.LoadModel(userModelData,null);
+            uiComponent.handler_GameModel.LoadModel(userModelData, action);
         }
         else
         {

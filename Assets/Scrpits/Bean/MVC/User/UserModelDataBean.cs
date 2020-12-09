@@ -15,6 +15,46 @@ public class UserModelDataBean
     }
 
     /// <summary>
+    /// 通过部件ID获取数据
+    /// </summary>
+    /// <param name="partId"></param>
+    /// <returns></returns>
+    public UserModelPartDataBean GetUserPartDataById(long partId)
+    {
+        if (listUnlockPart == null)
+            return null;
+        for (int i = 0; i < listUnlockPart.Count; i++)
+        {
+            UserModelPartDataBean itemPartData = listUnlockPart[i];
+            if (partId == itemPartData.partId)
+            {
+                return itemPartData;
+            }
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// 升级部件
+    /// </summary>
+    /// <param name="partId"></param>
+    /// <param name="addLevel"></param>
+    public void LevelUpPart(long partId,int addLevel)
+    {
+        if (listUnlockPart == null)
+            return;
+        for (int i = 0; i < listUnlockPart.Count; i++)
+        {
+            UserModelPartDataBean itemPartData = listUnlockPart[i];
+            if (partId == itemPartData.partId)
+            {
+                itemPartData.LevelUp(addLevel);
+                return;
+            }
+        }
+    }
+
+    /// <summary>
     /// 增加已解锁模型
     /// </summary>
     /// <param name="modelId"></param>
