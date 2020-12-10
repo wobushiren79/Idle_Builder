@@ -28,4 +28,14 @@ public class UserModelPartDataBean
         }
         return level;
     }
+
+    public float GetProgress(int maxLevel)
+    {
+        float pro = level / (float)maxLevel;
+        if (pro < 0)
+            pro = 0;
+        if (pro > 1)
+            pro = 1;
+        return pro;
+    }
 }

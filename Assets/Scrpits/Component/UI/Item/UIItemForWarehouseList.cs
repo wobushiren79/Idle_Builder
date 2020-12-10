@@ -67,9 +67,14 @@ public class UIItemForWarehouseList : BaseUIItem<UIGameMain>
 
         if (isPay)
         {
+            //升级
             int level = userModelPartData.LevelUp(1);
+            //计算收益
             long addPrice = modelPartInfo.GetAddPrice(level);
+            //增加收益
             userModelPartData.SetAddPrice(addPrice);
+            //设置舰船显示进度
+            uiComponent.handler_GameModel.SetPartProgress(modelPartInfo.part_name, userModelPartData.GetProgress(modelPartInfo.max_level));
         }
         else
         {

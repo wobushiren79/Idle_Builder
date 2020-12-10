@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,14 +14,15 @@ public class GameModelControl : BaseMonoBehaviour
 
     protected float minScaleSize = 0.3f;
     protected float maxScaleSize = 3f;
-
+    protected int maxAngleForVertical = 315;
+    protected int mixAngleForVertical = 0;
     void Update()
     {
         //没有触摸
         if (Input.touchCount <= 0)
             return;
         //HandleForHorizontalMove();
-        HandleForRotation(false, true);
+        HandleForRotation(true, true);
         HandleForScale();
     }
 
@@ -49,7 +51,7 @@ public class GameModelControl : BaseMonoBehaviour
 
         //两个距离之差，为正表示放大手势， 为负表示缩小手势  
         float offset = newDistance - oldDistance;
-        
+
         //进行缩放
         float scaleFactor = offset * speedForScale * Time.deltaTime;
         Vector3 localScale = transform.localScale;
@@ -118,14 +120,27 @@ public class GameModelControl : BaseMonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
             {
                 var deltaposition = Input.GetTouch(0).deltaPosition;
-                if (isOpenVertical)
+                if (isOpenVertical && Math.Abs(deltaposition.y) > Math.Abs(deltaposition.x))
                 {
-                    transform.Rotate(Vector3.right * deltaposition.y * Time.deltaTime * speedForRotate, Space.World);
+                    //transform.Rotate(Vector3.right * deltaposition.y * Time.deltaTime * speedForRotate, Space.World);
+                    //transform.Rotate(deltaposition.y * Time.deltaTime * speedForRotate, 0, 0, Space.World);
+                    transform.RotateAround(Vector3.zero, Vector3.right, deltaposition.y * Time.deltaTime * speedForRotate);
                 }
-                if (isOpenHorizontal)
+                if (isOpenHorizontal && Math.Abs(deltaposition.x) > Math.Abs(deltaposition.y))
                 {
-                    transform.Rotate(Vector3.down * deltaposition.x * Time.deltaTime * speedForRotate, Space.World);
+                    //transform.Rotate(Vector3.down * deltaposition * Time.deltaTime * speedForRotate, Space.World);
+                    //transform.Rotate(0, deltaposition.x * Time.deltaTime * speedForRotate, 0, Space.World);
+                    transform.RotateAround(Vector3.zero, Vector3.down, deltaposition.x * Time.deltaTime * speedForRotate);
                 }
+
+                //if (transform.localEulerAngles.x > mixAngleForVertical && transform.localEulerAngles.x < 180)
+                //{
+                //    transform.localEulerAngles = new Vector3(mixAngleForVertical, transform.localEulerAngles.y, transform.localEulerAngles.z);
+                //}
+                //else if (transform.localEulerAngles.x > 180 && transform.eulerAngles.x < maxAngleForVertical)
+                //{
+                //    transform.localEulerAngles = new Vector3(maxAngleForVertical, transform.localEulerAngles.y, transform.localEulerAngles.z);
+                //}
             }
         }
     }
