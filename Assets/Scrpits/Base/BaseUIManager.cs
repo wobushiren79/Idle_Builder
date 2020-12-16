@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BaseUIManager : BaseMonoBehaviour
 {
+    public GameObject objUIContainer;
+
     //所有的UI控件
     public List<BaseUIComponent> uiList;
 
@@ -14,7 +16,7 @@ public class BaseUIManager : BaseMonoBehaviour
     /// <returns></returns>
     public BaseUIComponent GetOpenUI()
     {
-        for (int i = 0; i < uiList.Count; i++)
+        for (int i=0;i< uiList.Count;i++)
         {
             BaseUIComponent itemUI = uiList[i];
             if (itemUI.gameObject.activeSelf)
@@ -114,16 +116,16 @@ public class BaseUIManager : BaseMonoBehaviour
         }
         if (!hasData)
         {
-            BaseUIComponent uiModel = LoadResourcesUtil.SyncLoadData<BaseUIComponent>("UI/" + uiName);
+            BaseUIComponent uiModel = LoadResourcesUtil.SyncLoadData<BaseUIComponent>("UI/"+ uiName);
             if (uiModel)
             {
-                GameObject objUIComponent = Instantiate(gameObject, uiModel.gameObject);
+                GameObject objUIComponent = Instantiate(objUIContainer, uiModel.gameObject);
                 uiComponent = objUIComponent.GetComponent<BaseUIComponent>();
                 uiList.Add(uiComponent);
             }
             else
             {
-                LogUtil.LogError("没有找到指定UI：" + "Resources/UI/" + uiName);
+                LogUtil.LogError("没有找到指定UI："+ "Resources/UI/" + uiName);
             }
         }
         return uiComponent;
@@ -138,6 +140,7 @@ public class BaseUIManager : BaseMonoBehaviour
         string uiName = EnumUtil.GetEnumName(uiEnum);
         OpenUIByName(uiName);
     }
+
 
     /// <summary>
     /// 通过UI的名字关闭UI
@@ -193,7 +196,7 @@ public class BaseUIManager : BaseMonoBehaviour
 
     public BaseUIComponent OpenUIAndCloseOther(UIEnum ui)
     {
-        return OpenUIAndCloseOtherByName(EnumUtil.GetEnumName(ui));
+       return OpenUIAndCloseOtherByName(EnumUtil.GetEnumName(ui));
     }
 
     /// <summary>
