@@ -122,7 +122,6 @@ public class ScrollGridHorizontal : MonoBehaviour
                         //cellRect.anchorMin = rfTempCel).anchorMin;
                         //cellRect.anchorMax = rfTempCell.anchorMax;
                         cellRect.sizeDelta = new Vector2(rfTempCell.rect.width, rfTempCell.rect.height);
-
                         float x = this.cellWidth / 2 + l * this.cellWidth;
                         float y = -r * this.cellHeight - this.cellHeight / 2;
                         cellRect.SetParent(this.scrollRect.content);

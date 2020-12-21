@@ -145,7 +145,7 @@ public class ScrollGridVertical : MonoBehaviour
                         cellRect.anchorMax = new Vector2(0, 1);
                         //cellRect.anchorMin = rfTempCel).anchorMin;
                         //cellRect.anchorMax = rfTempCell.anchorMax;
-                        cellRect.sizeDelta =new Vector2(rfTempCell.rect.width, rfTempCell.rect.height) ;
+                        cellRect.sizeDelta = new Vector2(rfTempCell.rect.width, rfTempCell.rect.height);
                         //分别算出每个cell的位置。
                         float x = this.cellWidth / 2 + l * this.cellWidth;
                         float y = -r * this.cellHeight - this.cellHeight / 2;
