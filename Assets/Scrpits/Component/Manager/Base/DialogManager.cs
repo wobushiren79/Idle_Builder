@@ -82,4 +82,9 @@ public class DialogManager : BaseManager
         if (dialogView != null && listDialog.Contains(dialogView))
             listDialog.Remove(dialogView);
     }
+
+    public RectTransform GetContainer()
+    {
+        return (RectTransform)objContainer.transform;
+    }
 }

@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-public class MsgManger : BaseManager
+public class MsgManager : BaseManager
 {
     public GameObject objContainer;
     public Dictionary<string, GameObject> listObjModel = new Dictionary<string, GameObject>();
@@ -65,5 +65,10 @@ public class MsgManger : BaseManager
         objModel.name = name;
         listObjModel.Add(name, objModel);
         return objModel;
+    }
+
+    public RectTransform GetContainer()
+    {
+        return (RectTransform)objContainer.transform;
     }
 }

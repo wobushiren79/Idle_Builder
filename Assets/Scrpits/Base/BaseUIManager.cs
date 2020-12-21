@@ -275,4 +275,8 @@ public class BaseUIManager : BaseMonoBehaviour
         }
     }
 
+    public RectTransform GetContainer()
+    {
+        return (RectTransform)objUIContainer.transform;
+    }
 }

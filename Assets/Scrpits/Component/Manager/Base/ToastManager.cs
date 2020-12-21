@@ -80,4 +80,9 @@ public class ToastManager : BaseManager
         listObjModel.Add(name, objModel);
         return objModel;
     }
+
+    public RectTransform GetContainer()
+    {
+        return (RectTransform)objContainer.transform;
+    }
 }
